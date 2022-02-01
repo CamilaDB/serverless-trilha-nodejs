@@ -28,8 +28,16 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     }
   }).promise();
 
+  if (!res) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({messge: "Could not create toDo"})
+    }
+  }
+
   return {
     statusCode: 201,
     body: JSON.stringify(res.Items[0])
   }
+
 }
